@@ -9,7 +9,6 @@ def is_passport_valid(passport):
     obligatory_keys = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
     for key in obligatory_keys:
         if key not in passport:
-            print("{} {}".format(passport, key))
             return False
     return True
 
@@ -27,6 +26,7 @@ def pasre_input_to_passports(input):
         else:
             passports.append(dict(passport))
             passport.clear()
+    passports.append(dict(passport))
     return passports
 
 
@@ -39,6 +39,6 @@ if __name__ == '__main__':
         if is_passport_valid(passport):
             valid_passports += 1
 
-    print(valid_passports+1)
+    print(valid_passports)
 
 
