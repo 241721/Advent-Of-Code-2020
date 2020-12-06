@@ -18,6 +18,8 @@ class Byr(Key):
         super().__init__("byr")
 
     def validate(self, value):
+        if value is None:
+            return False
         if len(value) == 4 and 1920 <= int(value) <= 2002:
             return True
         else:
@@ -29,6 +31,8 @@ class Iyr(Key):
         super().__init__("iyr")
 
     def validate(self, value):
+        if value is None:
+            return False
         if len(value) == 4 and 2010 <= int(value) <= 2020:
             return True
         else:
@@ -39,7 +43,10 @@ class Eyr(Key):
     def __init__(self):
         super().__init__("eyr")
 
+
     def validate(self, value):
+        if value is None:
+            return False
         if len(value) == 4 and 2020 <= int(value) <= 2030:
             return True
         else:
@@ -51,6 +58,8 @@ class Hgt(Key):
         super().__init__("hgt")
 
     def validate(self, value):
+        if value is None:
+            return False
         if value[-2:] == "cm":
             if 150 <= int(value[:-2]) <= 193:
                 return True
@@ -66,6 +75,11 @@ class Hcl(Key):
         super().__init__("hcl")
 
     def validate(self, value):
+        if value is None:
+            return False
+        if len(value) == 7 and value[0] == "#":
+            if value[1:].isalnum():
+                return True
         return False
 
 
@@ -74,6 +88,8 @@ class Ecl(Key):
         super().__init__("ecl")
 
     def validate(self, value):
+        if value is None:
+            return False
         colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
         return value in colors
 
@@ -83,8 +99,10 @@ class Pid(Key):
         super().__init__("pid")
 
     def validate(self, value):
-        if not type(value) == int:
+        if value is None:
             return False
+        if len(value) == 9 and value.isdigit():
+            return True
         return False
 
 

@@ -40,5 +40,3 @@ if __name__ == '__main__':
             valid_passports += 1
 
     print(valid_passports)
-
-
